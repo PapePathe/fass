@@ -11,18 +11,63 @@ TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_O
 Install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle add fass
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install fass
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+Let's use the github api as an example
+
+```ruby
+GithubApi = Fass::Api.new(
+  base_url: 'https://api.github.com',
+  headers: {
+    "Authorization": "Bearer: YOUR_TOKEN",
+    "Content-Type": "application/json"
+  }
+)
+```
+
+### Get request
+
+```ruby
+response = GithubApi.users('PapePathe').events.get
+```
+
+```json
+[
+  {
+    "id"=>"50925011814",
+    "type"=>"CreateEvent",
+    "actor"=>
+     {
+        "id"=>340927,
+        "login"=>"PapePathe",
+        "display_login"=>"PapePathe",
+        "gravatar_id"=>"",
+        "url"=>"https://api.github.com/users/PapePathe",
+        "avatar_url"=>"https://avatars.githubusercontent.com/u/340927?"
+     },
+    "repo"=>{"id"=>1002602076, "name"=>"PapePathe/fass", "url"=>"https://api.github.com/repos/PapePathe/fass"},
+    "payload"=>
+     {"ref"=>"master", "ref_type"=>"branch", "master_branch"=>"main", "description"=>" rapid api client", "pusher_type"=>"user"},
+    "public"=>true,
+    "created_at"=>"2025-06-15T20:13:10Z"
+  }
+]
+```
+
+### Post request
+
+### Put request
+
+### Delete request
 
 ## Development
 

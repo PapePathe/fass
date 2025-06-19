@@ -8,12 +8,8 @@ require "forwardable"
 
 module Fass
   class Client
-    extend Forwardable
-
     HTTP_METHODS = %i[get post put delete].freeze
 
-    def_delegators @config, :base_url, :base_url=
-    attr_reader :config
     attr_accessor :base_url, :headers
 
     def initialize(segments = [], base_url: "", headers: "")
