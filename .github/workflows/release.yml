@@ -33,12 +33,6 @@ jobs:
           bundler-cache: true
       - name: Release
         run: bundle exec rake release
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
-      - run: bundle install
       - uses: rubygems/release-gem@v1
       - name: Publish to GPR
         run: |
