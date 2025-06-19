@@ -20,6 +20,7 @@ jobs:
       packages: write
       contents: read
     steps:
+      - uses: actions/checkout@v4
       - name: Set remote URL
         run: |
           git config --global user.email "$(git log -1 --pretty=format:'%ae')"
@@ -32,7 +33,6 @@ jobs:
           bundler-cache: true
       - name: Release
         run: bundle exec rake release
-      - uses: actions/checkout@v4
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
