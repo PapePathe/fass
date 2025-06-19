@@ -20,6 +20,22 @@ jobs:
       packages: write
       contents: read
     steps:
+      - name: Configure RubyGems Credentials
+        uses: rubygems/configure-rubygems-credentials@main
+        with:
+          api-token: ${{ secrets.RUBYGEMS_API_TOKEN }}
+      - name: Set remote URL
+        run: |
+          git config --global user.email "$(git log -1 --pretty=format:'%ae')"
+          git config --global user.name "$(git log -1 --pretty=format:'%an')"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY"
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.1"
+          bundler-cache: true
+      - name: Release
+        run: bundle exec rake release
       - uses: actions/checkout@v4
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
