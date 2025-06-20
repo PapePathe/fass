@@ -32,39 +32,15 @@ GithubApi = Fass::Api.new(
 
 ### Get request
 
-#### Fass Api Usage
-
 ```ruby
 response = GithubApi.users('PapePathe').events.get
 ```
 
 ```bash
-  GET https://api.github.com/PapePathe/events, headers: ....
-```
-
-#### Response
-
-```json
-[
-  {
-    "id"=>"50925011814",
-    "type"=>"CreateEvent",
-    "actor"=>
-     {
-        "id"=>340927,
-        "login"=>"PapePathe",
-        "display_login"=>"PapePathe",
-        "gravatar_id"=>"",
-        "url"=>"https://api.github.com/users/PapePathe",
-        "avatar_url"=>"https://avatars.githubusercontent.com/u/340927?"
-     },
-    "repo"=>{"id"=>1002602076, "name"=>"PapePathe/fass", "url"=>"https://api.github.com/repos/PapePathe/fass"},
-    "payload"=>
-     {"ref"=>"master", "ref_type"=>"branch", "master_branch"=>"main", "description"=>" rapid api client", "pusher_type"=>"user"},
-    "public"=>true,
-    "created_at"=>"2025-06-15T20:13:10Z"
-  }
-]
+curl -L \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.github.com/PapePathe/events
 ```
 
 ### Post request
