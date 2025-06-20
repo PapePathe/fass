@@ -1,12 +1,9 @@
 name: Ruby
-
 on:
   push:
     branches:
       - master
-
   pull_request:
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,8 +11,7 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.3.7'
-
+          - "3.3.7"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby
@@ -23,5 +19,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Run the default task
-        run: bundle exec rake
+      - name: Run Tests
+        run: bundle exec rspec
+      - name: Run rubocop
+        run: bundle exec rubocop -f github
